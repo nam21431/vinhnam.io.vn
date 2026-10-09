@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Giải Đố - Puzzle Game</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: monospace;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .container {
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 40px;
+            display: inline-block;
+            border-radius: 8px;
+            width: 450px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        h1 {
+            color: #58a6ff;
+            margin-bottom: 10px;
+        }
+        .btn-start {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 12px 30px;
+            background: #238636;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(35, 134, 54, 0.4);
+            transition: background 0.2s;
+        }
+        .btn-start:hover {
+            background: #2ea043;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #30363d;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #21262d;
+            color: #58a6ff;
+        }
+        .sub-text {
+            color: #8b949e;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🔐 HỆ THỐNG GIẢI ĐỐ</h1>
+        <p class="sub-text">Vượt qua các thử thách trí tuệ và ghi tên vào bảng vàng</p>
+
+        <!-- Nút bắt đầu chơi -->
+        <br>
+        <a href="level1.html" class="btn-start">🚀 BẮT ĐẦU CHƠI (LEVEL 1)</a>
+
+        <hr style="border-color: #30363d; margin: 30px 0;">
+
+        <!-- Phần bảng xếp hạng tích hợp trực tiếp -->
+        <h3 style="margin-bottom: 5px;">🏆 BẢNG XẾP HẠNG</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Hạng</th>
+                    <th>Tên</th>
+                    <th>Điểm</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboardBody">
+                <!-- Dữ liệu tự động điền từ script bên dưới -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Danh sách người chơi (bạn có thể edit trực tiếp ở đây hoặc đồng bộ với leaderboard.html)
+        const leaderboardData = [
+            { name: "mrroller", score: 100 },
+            { name: "PlayerX", score: 85 }
+        ];
+
+        function renderLeaderboard() {
+            let tbody = document.getElementById('leaderboardBody');
+            tbody.innerHTML = "";
+
+            // Sắp xếp từ điểm cao xuống thấp
+            leaderboardData.sort((a, b) => b.score - a.score);
+
+            leaderboardData.forEach((item, index) => {
+                let row = `<tr>
+                    <td>#${index + 1}</td>
+                    <td>${item.name}</td>
+                    <td>${item.score}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        renderLeaderboard();
+    </script>
+
+</body>
+</html>
