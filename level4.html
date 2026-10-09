@@ -2,23 +2,20 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Puzzle - Level 3</title>
+    <title>Puzzle - Level 4</title>
     <style>body{background:#0d1117;color:#c9d1d9;font-family:monospace;text-align:center;padding-top:80px;}</style>
 </head>
 <body>
-    <h1>LEVEL 3</h1>
-    <p>Không có gợi ý nào ở đây cả. Hoặc là có?... (Thử nhấn F12 xem sao)</p>
-
-    <!-- Gợi ý ẩn trong mã nguồn: Mật khẩu là "secret_key" -->
-    <!-- Manh mối: password = secret_key -->
-
-    <input type="text" id="ans" placeholder="Nhập mật khẩu...">
+    <h1>LEVEL 4</h1>
+    <p>Mật mã Caesar: Mỗi chữ cái trong từ khóa đã bị dịch chuyển tiến lên **1 bước** trong bảng chữ cái.</p>
+    <p>Đoạn mã cần giải: <b style="color: #ff7b72;">bpob</b></p>
+    <input type="text" id="ans" placeholder="Nhập từ gốc...">
     <button onclick="check()">Gửi</button>
     <script>
         function check() {
-            if(document.getElementById('ans').value.trim() === "secret_key") {
-                alert("Hay lắm!");
-                window.location.href = "level4.html";
+            if(document.getElementById('ans').value.trim().toLowerCase() === "cool") {
+                alert("Chính xác! Chỉ còn 1 màn cuối.");
+                window.location.href = "level5.html";
             } else { alert("Sai rồi!"); }
         }
     </script>
