@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Xếp Hạng - Puzzle</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: monospace;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .container {
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 30px;
+            display: inline-block;
+            border-radius: 8px;
+            width: 400px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        input {
+            padding: 8px;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            color: #fff;
+            border-radius: 4px;
+            margin: 5px;
+            width: 40%;
+        }
+        button {
+            padding: 8px 15px;
+            background: #238636;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #2ea043;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #30363d;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #21262d;
+            color: #58a6ff;
+        }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🏆 BẢNG XẾP HẠNG</h1>
+        <p>Danh sách người chơi phá đảo câu đố</p>
+
+        <!-- Form nhập thủ công -->
+        <div style="margin-bottom: 20px; background: #21262d; padding: 10px; border-radius: 6px;">
+            <h3 style="margin: 0 0 10px 0; font-size: 14px; color: #8b949e;">Thêm người chơi thủ công</h3>
+            <input type="text" id="playerName" placeholder="Tên người chơi">
+            <input type="number" id="playerScore" placeholder="Điểm / Thời gian">
+            <br>
+            <button onclick="addPlayer()" style="margin-top: 8px; width: 90%;">Thêm vào bảng</button>
+        </div>
+
+        <!-- Bảng hiển thị -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Hạng</th>
+                    <th>Tên</th>
+                    <th>Điểm</th>
+                </tr>
+             खातों
+            <tbody id="leaderboardBody">
+                <!-- Dữ liệu sẽ tự động điền ở đây -->
+            </tbody>
+        </table>
+
+        <a href="index.html" class="back-link">← Quay lại màn 1</a>
+    </div>
+
+    <script>
+        // Lấy danh sách từ localStorage (nếu chưa có thì tạo mảng trống)
+        let scores = JSON.parse(localStorage.getItem('puzzleScores')) || [
+            { name: "mrroller", score: 100 }, // Mẫu mặc định
+            { name: "PlayerX", score: 85 }
+        ];
+
+        function renderLeaderboard() {
+            let tbody = document.getElementById('leaderboardBody');
+            tbody.innerHTML = "";
+
+            // Sắp xếp từ điểm cao xuống thấp
+            scores.sort((a, b) => b.score - a.score);
+
+            scores.forEach((item, index) => {
+                let row = `<tr>
+                    <td>#${index + 1}</td>
+                    <td>${item.name}</td>
+                    <td>${item.score}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function addPlayer() {
+            let name = document.getElementById('playerName').value.trim();
+            let score = parseInt(document.getElementById('playerScore').value);
+
+            if (name === "" || isNaN(score)) {
+                alert("Vui lòng nhập đầy đủ tên và điểm hợp lệ!");
+                return;
+            }
+
+            // Thêm vào mảng
+            scores.push({ name: name, score: score });
+
+            // Lưu vào bộ nhớ trình duyệt
+            localStorage.setItem('puzzleScores', JSON.stringify(scores));
+
+            // Xóa ô nhập và vẽ lại bảng
+            document.getElementById('playerName').value = "";
+            document.getElementById('playerScore').value = "";
+            renderLeaderboard();
+        }
+
+        // Hiển thị bảng khi vừa mở trang
+        renderLeaderboard();
+    </script>
+
+</body>
+</html>
