@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HARDEST QUESTION</title>
+    <style>
+        body {
+            background-color: #050505;
+            color: #00ff66;
+            font-family: monospace;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .container {
+            border: 1px dashed #00ff66;
+            padding: 40px;
+            display: inline-block;
+            background: #0a0a0a;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.2);
+            max-width: 500px;
+        }
+        input {
+            background: #000;
+            border: 1px solid #00ff66;
+            color: #00ff66;
+            padding: 10px;
+            font-family: monospace;
+            outline: none;
+            width: 280px;
+        }
+        button {
+            background: #00ff66;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: monospace;
+            margin-top: 15px;
+        }
+        button:hover {
+            background: #00cc52;
+        }
+        .hint {
+            color: #444;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
 
+    <div class="container">
+        <h1>SYSTEM LOCKED</h1>
+        <p>To breach the gate, you must assemble the 3 hidden fragments into a single password.</p>
+        <hr style="border-color: #003311; margin: 20px 0;">
+        
+        <p style="color: #888; font-size: 13px;">
+            🧩 This guy is handsome.<br>
+            🧩 This guy best at math.<br>
+            🧩 He want to punch Audi
+        </p>
+        
+        <br>
+        <input type="text" id="secretPassBox" name="random_key_9988" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Enter combined password...">
+        <br>
+        <button onclick="verify()">BREACH SYSTEM</button>
+
+        <div class="hint">Tip: Combine them sequentially with no spaces.</div>
+    </div>
+
+    <script>
+        function verify() {
+            // Thêm .toLowerCase() để không phân biệt chữ hoa/chữ thường
+            let val = document.getElementById('secretPassBox').value.trim().toLowerCase();
+            let correctPassword = "vinh nam"; // viết thường ở đây vì đã dùng toLowerCase()
+            
+            if (val === correctPassword) {
+                alert("ACCESS GRANTED. Redirecting...");
+                window.location.href = "index.html";
+            } else {
+                alert("ACCESS DENIED. Wrong answer son.");
+            }
+        }
+    </script>
+
+</body>
+</html>
