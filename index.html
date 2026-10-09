@@ -2,32 +2,21 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang web của tôi</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: #ffffff;
-            text-align: center;
-            margin-top: 100px;
-        }
-        .container {
-            background: #1e1e1e;
-            padding: 30px;
-            border-radius: 10px;
-            display: inline-block;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-        h1 {
-            color: #4CAF50;
-        }
-    </style>
+    <title>Puzzle - Level 1</title>
+    <style>body{background:#0d1117;color:#c9d1d9;font-family:monospace;text-align:center;padding-top:80px;}</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Xin chào! Website đã chạy thành công 🚀</h1>
-        <p>Trang web này đang chạy trên tên miền của bạn và lưu trữ tại GitHub Pages.</p>
-    </div>
+    <h1>LEVEL 1</h1>
+    <p>Mật mã đầu tiên rất đơn giản: Phép tính <code>7 + 5 * 2</code> bằng bao nhiêu?</p>
+    <input type="text" id="ans" placeholder="Nhập đáp án...">
+    <button onclick="check()">Gửi</button>
+    <script>
+        function check() {
+            if(document.getElementById('ans').value.trim() === "17") {
+                alert("Chính xác!");
+                window.location.href = "level2.html";
+            } else { alert("Sai rồi!"); }
+        }
+    </script>
 </body>
 </html>
