@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Puzzle - Level 1</title>
+    <style>body{background:#0d1117;color:#c9d1d9;font-family:monospace;text-align:center;padding-top:80px;}</style>
+</head>
+<body>
+    <h1>LEVEL 1</h1>
+    <p>Mật mã đầu tiên rất đơn giản: Phép tính <code>7 + 5 * 2</code> bằng bao nhiêu?</p>
+    <input type="text" id="ans" placeholder="Nhập đáp án...">
+    <button onclick="check()">Gửi</button>
+    <script>
+        function check() {
+            if(document.getElementById('ans').value.trim() === "17") {
+                alert("Chính xác!");
+                window.location.href = "level2.html";
+            } else { alert("Sai rồi!"); }
+        }
+    </script>
+</body>
+</html>
