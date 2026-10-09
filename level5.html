@@ -2,21 +2,75 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Puzzle - Final Level</title>
-    <style>body{background:#0d1117;color:#c9d1d9;font-family:monospace;text-align:center;padding-top:80px;}</style>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: monospace;
+            text-align: center;
+            padding-top: 80px;
+        }
+        .box {
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 40px;
+            display: inline-block;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            max-width: 500px;
+        }
+        input {
+            padding: 10px;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            color: #fff;
+            border-radius: 4px;
+            outline: none;
+            width: 200px;
+            margin-top: 15px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #238636;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        button:hover {
+            background: #2ea043;
+        }
+    </style>
 </head>
 <body>
-    <h1>FINAL LEVEL</h1>
-    <p>Màn cuối cùng! Hãy nhìn vào tên miền trang web của bạn (`vinhnam.io.vn`).</p>
-    <p>Hỏi: Phần mở đuôi tên miền cao nhất (tên miền quốc gia/mã vùng) của bạn là gì?</p>
-    <input type="text" id="ans" placeholder="Nhập đuôi miền...">
-    <button onclick="check()">Hoàn thành</button>
+
+    <div class="box">
+        <h1>FINAL LEVEL</h1>
+        <p>Màn cuối cùng! Hãy nhìn vào tên miền trang web của bạn (<code>vinhnam.io.vn</code>).</p>
+        <p>Hỏi: Phần mở đuôi tên miền cao nhất (tên miền quốc gia/mã vùng) của bạn là gì?</p>
+        
+        <br>
+        <input type="text" id="ans" placeholder="Nhập đuôi miền...">
+        <br>
+        <button onclick="check()">Hoàn thành</button>
+    </div>
+
     <script>
         function check() {
-            if(document.getElementById('ans').value.trim().toLowerCase() === "vn") {
+            let userAns = document.getElementById('ans').value.trim().toLowerCase();
+            if(userAns === "vn") {
                 alert("🏆 Chúc mừng bạn đã phá đảo toàn bộ các màn chơi!");
-            } else { alert("Sai mất rồi, nghĩ lại xem!"); }
+                // Tự động chuyển hướng sang trang bảng xếp hạng
+                window.location.href = "leaderboard.html";
+            } else { 
+                alert("Sai mất rồi, nghĩ lại xem!"); 
+            }
         }
     </script>
+
 </body>
 </html>
