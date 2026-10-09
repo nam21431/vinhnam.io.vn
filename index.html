@@ -65,7 +65,7 @@
 
     <div class="container">
         <h1>🔐 VINH NAM</h1>
-        <p class="sub-text">FINISH AND MESSAGE ME WITH VIDEO PROOF WILL GET TO LIST</p>
+        <p class="sub-text">FINISH AND MESSAGE ME WITH VIDEO PROOF WILL GET TO LEADERBOARD</p>
 
         <!-- Nút bắt đầu chơi -->
         <br>
@@ -79,8 +79,8 @@
             <thead>
                 <tr>
                     <th>PLACE</th>
-                    <th>NAM</th>
-                    <th>SCORE</th>
+                    <th>NAME</th>
+                    <th>TIME</th>
                 </tr>
             </thead>
             <tbody id="leaderboardBody">
@@ -90,24 +90,21 @@
     </div>
 
     <script>
-        // Danh sách người chơi (bạn có thể edit trực tiếp ở đây hoặc đồng bộ với leaderboard.html)
+        // Danh sách người chơi với mốc thời gian 09 Oct 2026
         const leaderboardData = [
-            { name: "VINH NAM (OWNER)", score: 100 },
-            { name: "none", score: 0 }
+            { name: "VINH NAM (OWNER)", time: "09 Oct 2026" },
+            { name: "none", time: "-" }
         ];
 
         function renderLeaderboard() {
             let tbody = document.getElementById('leaderboardBody');
             tbody.innerHTML = "";
 
-            // Sắp xếp từ điểm cao xuống thấp
-            leaderboardData.sort((a, b) => b.score - a.score);
-
             leaderboardData.forEach((item, index) => {
                 let row = `<tr>
                     <td>#${index + 1}</td>
                     <td>${item.name}</td>
-                    <td>${item.score}</td>
+                    <td>${item.time}</td>
                 </tr>`;
                 tbody.innerHTML += row;
             });
