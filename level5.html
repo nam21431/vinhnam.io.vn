@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Puzzle - Final Level</title>
+    <style>body{background:#0d1117;color:#c9d1d9;font-family:monospace;text-align:center;padding-top:80px;}</style>
+</head>
+<body>
+    <h1>FINAL LEVEL</h1>
+    <p>Màn cuối cùng! Hãy nhìn vào tên miền trang web của bạn (`vinhnam.io.vn`).</p>
+    <p>Hỏi: Phần mở đuôi tên miền cao nhất (tên miền quốc gia/mã vùng) của bạn là gì?</p>
+    <input type="text" id="ans" placeholder="Nhập đuôi miền...">
+    <button onclick="check()">Hoàn thành</button>
+    <script>
+        function check() {
+            if(document.getElementById('ans').value.trim().toLowerCase() === "vn") {
+                alert("🏆 Chúc mừng bạn đã phá đảo toàn bộ các màn chơi!");
+            } else { alert("Sai mất rồi, nghĩ lại xem!"); }
+        }
+    </script>
+</body>
+</html>
