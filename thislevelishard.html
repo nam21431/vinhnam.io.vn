@@ -62,60 +62,75 @@
         </p>
         
         <br>
-        <input type="text" id="secretPassBox" name="random_key_9988" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type correct answer." onkeydown="if (event.key === 'Enter') verify()">
+        <input type="text" id="secretPassBox" name="random_key_9988" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type correct answer.">
         <br>
-        <button onclick="verify()">SUBMIT</button>
+        <button>SUBMIT</button>
 
         <div class="hint">Tip: No more lol.</div>
     </div>
 
-        <script>
-        
-        // Anti-Console / Anti-DevTools Trap
-        (function antiDevTools() {
-            function block() {
-                if (window.devtools && window.devtools.isOpen) {
-                    window.location.reload();
-                }
-            }
+            <script>
+        // IIFE Private Scope Encapsulation
+        (function() {
+            // Anti-Console / Anti-DevTools Trap
             setInterval(function () {
                 const startTime = performance.now();
-                debugger; // Freezes execution if Console / DevTools is open
+                debugger; // Breaks execution if DevTools is open
                 const endTime = performance.now();
                 if (endTime - startTime > 100) {
-                    document.body.innerHTML = "<h1 style='color:red;'>CHEAT DETECTED! CLOSE CONSOLE.</h1>";
+                    document.body.innerHTML = "<h1 style='color:red;'>CHEAT DETECTED! CLOSE CONSOLE TO PLAY.</h1>";
                 }
             }, 500);
+
+            // Anti-cheat shortcuts
+            document.addEventListener('contextmenu', e => e.preventDefault());
+            document.addEventListener('keydown', e => {
+                if (
+                    e.key === 'F12' ||
+                    (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) ||
+                    (e.ctrlKey && e.key.toUpperCase() === 'U')
+                ) {
+                    e.preventDefault();
+                }
+            });
+
+            // Private Verification Function (NOT attached to window)
+            async function verify() {
+                const passInput = document.getElementById('secretPassBox');
+                if (!passInput) return;
+                let val = passInput.value.trim().toLowerCase();
+                
+                const msgBuffer = new TextEncoder().encode(val);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const userHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+                const correctHash = "640bbae29e5802c1e2c42c745377d5c0857d3c68d3dd47481469d2feec8b8898";
+                
+                if (userHash === correctHash) {
+                    alert("ACCESS GRANTED. Redirecting...");
+                    window.location.href = "how";
+                } else {
+                    alert("ACCESS DENIED. Wrong answer son.");
+                }
+            }
+
+            // Event Listeners attached internally
+            document.addEventListener('DOMContentLoaded', () => {
+                const inputEl = document.getElementById('secretPassBox');
+                const btnEl = document.querySelector('button');
+
+                if (inputEl) {
+                    inputEl.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') verify();
+                    });
+                }
+                if (btnEl) {
+                    btnEl.addEventListener('click', verify);
+                }
+            });
         })();
-
-        // Anti-cheat: Disable right-click & developer shortcuts
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('keydown', e => {
-            if (
-                e.key === 'F12' ||
-                (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) ||
-                (e.ctrlKey && e.key.toUpperCase() === 'U')
-            ) {
-                e.preventDefault();
-            }
-        });
-
-        async function verify() {
-            let val = document.getElementById('secretPassBox').value.trim().toLowerCase();
-            
-            // Hash user input
-            const msgBuffer = new TextEncoder().encode(val);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const userHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-
-            const correctHash = "640bbae29e5802c1e2c42c745377d5c0857d3c68d3dd47481469d2feec8b8898";
-            
-            if (userHash === correctHash) {
-                alert("ACCESS GRANTED. Redirecting...");
-                window.location.href = "how";
-            } else {
-                alert("ACCESS DENIED. Wrong answer son.");
-            }
-        }
     </script>
+
+</body>
+</html>
