@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VINH NAM</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: monospace;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .container {
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 40px;
+            display: inline-block;
+            border-radius: 8px;
+            width: 450px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        h1 {
+            color: #58a6ff;
+            margin-bottom: 10px;
+        }
+        .btn-start {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 12px 30px;
+            background: #238636;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(35, 134, 54, 0.4);
+            transition: background 0.2s;
+        }
+        .btn-start:hover {
+            background: #2ea043;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #30363d;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #21262d;
+            color: #58a6ff;
+        }
+        .sub-text {
+            color: #8b949e;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>VINH NAM HARDEST PUZZLE</h1>
+        <p class="sub-text">FINISH AND MESSAGE ME WITH VIDEO PROOF WILL GET TO LEADERBOARD</p>
+        <p class="sub-text">nam107054@stu.vinschool.edu.vn</p>
+        <p class="sub-text">BEAT 3 LV TO WIN, ADD MORE IN FURTURE</p>
+
+        <!-- Nút bắt đầu chơi -->
+        <a href="level1" class="btn-start">START</a>
+
+        <hr style="border-color: #30363d; margin: 30px 0;">
+
+        <!-- Phần bảng xếp hạng tích hợp trực tiếp -->
+        <h3 style="margin-bottom: 5px;">🏆 LEADERBOARD</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>PLACE</th>
+                    <th>NAME</th>
+                    <th>TIME</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboardBody">
+                <!-- Dữ liệu tự động điền từ script bên dưới -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Danh sách người chơi với mốc thời gian 09 Oct 2026
+        const leaderboardData = [
+            { name: "VINH NAM (OWNER)", time: "10 Oct 2026" },
+            { name: "GayalixSauce (AUDI)", time: "10 Oct 2026" },
+            { name: "soc", time: "10 Oct 2026" },
+            { name: "-", time: "-" }
+        ];
+
+        function renderLeaderboard() {
+            let tbody = document.getElementById('leaderboardBody');
+            tbody.innerHTML = "";
+
+            leaderboardData.forEach((item, index) => {
+                let row = `<tr>
+                    <td>#${index + 1}</td>
+                    <td>${item.name}</td>
+                    <td>${item.time}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        renderLeaderboard();
+    </script>
+
+</body>
+</html>
