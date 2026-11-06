@@ -62,7 +62,7 @@
         </p>
         
         <br>
-        <input type="text" id="secretPassBox" name="random_key_9988" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type correct answer.">
+        <input type="text" id="secretPassBox" name="random_key_9988" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type correct answer." onkeydown="if (event.key === 'Enter') verify()">
         <br>
         <button onclick="verify()">SUBMIT</button>
 
@@ -70,6 +70,24 @@
     </div>
 
         <script>
+        
+        // Anti-Console / Anti-DevTools Trap
+        (function antiDevTools() {
+            function block() {
+                if (window.devtools && window.devtools.isOpen) {
+                    window.location.reload();
+                }
+            }
+            setInterval(function () {
+                const startTime = performance.now();
+                debugger; // Freezes execution if Console / DevTools is open
+                const endTime = performance.now();
+                if (endTime - startTime > 100) {
+                    document.body.innerHTML = "<h1 style='color:red;'>CHEAT DETECTED! CLOSE CONSOLE.</h1>";
+                }
+            }, 500);
+        })();
+
         // Anti-cheat: Disable right-click & developer shortcuts
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', e => {
