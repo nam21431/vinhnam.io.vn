@@ -75,16 +75,11 @@
             function triggerCheatDetected() {
                 if (triggered) return;
                 triggered = true;
-                document.body.innerHTML = `
-                    <div style="background-color: #050505; color: #ff0033; font-family: monospace; text-align: center; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <h1 style="font-size: 40px; border: 2px solid #ff0033; padding: 20px; box-shadow: 0 0 25px rgba(255, 0, 51, 0.5);">🚨 CHEAT DETECTED! 🚨</h1>
-                        <p style="color: #888; font-size: 16px; margin-top: 20px;">Developer Tools / Inspect Console is open.</p>
-                        <p style="color: #555; font-size: 12px;">Close the console and reload the page to play.</p>
-                    </div>
-                `;
+                // Instantly reload/restart the page
+                window.location.reload();
             }
 
-            // 1. Instant Dimension Check (Triggers as soon as DevTools panel docks/opens)
+            // 1. Instant Dimension Check (Triggers instantly when DevTools panel opens)
             const threshold = 140;
             function checkDevTools() {
                 if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
@@ -92,7 +87,7 @@
                 }
             }
             window.addEventListener('resize', checkDevTools);
-            setInterval(checkDevTools, 50); // Checks every 50 milliseconds for instant reaction
+            setInterval(checkDevTools, 50); // Checks every 50ms
 
             // 2. Immediate Debugger Trap
             setInterval(function () {
