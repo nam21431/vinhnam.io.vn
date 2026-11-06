@@ -69,20 +69,43 @@
         <div class="hint">Tip: No more lol.</div>
     </div>
 
-            <script>
-        // IIFE Private Scope Encapsulation
+    <script>
         (function() {
-            // Anti-Console / Anti-DevTools Trap
+            let triggered = false;
+
+            function triggerCheatDetected() {
+                if (triggered) return;
+                triggered = true;
+                document.body.innerHTML = `
+                    <div style="background-color: #050505; color: #ff0033; font-family: monospace; text-align: center; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <h1 style="font-size: 40px; border: 2px solid #ff0033; padding: 20px; box-shadow: 0 0 25px rgba(255, 0, 51, 0.5);">🚨 CHEAT DETECTED! 🚨</h1>
+                        <p style="color: #888; font-size: 16px; margin-top: 20px;">Developer Tools / Inspect Console is open.</p>
+                        <p style="color: #555; font-size: 12px;">Close the console and reload the page to play.</p>
+                    </div>
+                `;
+            }
+
+            // 1. Instant Dimension Check (Triggers as soon as DevTools panel docks/opens)
+            const threshold = 140;
+            function checkDevTools() {
+                if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
+                    triggerCheatDetected();
+                }
+            }
+            window.addEventListener('resize', checkDevTools);
+            setInterval(checkDevTools, 50); // Checks every 50 milliseconds for instant reaction
+
+            // 2. Immediate Debugger Trap
             setInterval(function () {
                 const startTime = performance.now();
-                debugger; // Breaks execution if DevTools is open
+                debugger;
                 const endTime = performance.now();
-                if (endTime - startTime > 100) {
-                    document.body.innerHTML = "<h1 style='color:red;'>CHEAT DETECTED! CLOSE CONSOLE TO PLAY.</h1>";
+                if (endTime - startTime > 50) {
+                    triggerCheatDetected();
                 }
-            }, 500);
+            }, 100);
 
-            // Anti-cheat shortcuts
+            // 3. Block shortcuts
             document.addEventListener('contextmenu', e => e.preventDefault());
             document.addEventListener('keydown', e => {
                 if (
@@ -91,10 +114,11 @@
                     (e.ctrlKey && e.key.toUpperCase() === 'U')
                 ) {
                     e.preventDefault();
+                    triggerCheatDetected();
                 }
             });
 
-            // Private Verification Function (NOT attached to window)
+            // Verification logic (IIFE)
             async function verify() {
                 const passInput = document.getElementById('secretPassBox');
                 if (!passInput) return;
@@ -115,7 +139,6 @@
                 }
             }
 
-            // Event Listeners attached internally
             document.addEventListener('DOMContentLoaded', () => {
                 const inputEl = document.getElementById('secretPassBox');
                 const btnEl = document.querySelector('button');
@@ -131,6 +154,5 @@
             });
         })();
     </script>
-
 </body>
 </html>
